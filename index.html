@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IFTS 29 - Front End 2026 - TP3: Dos sentencias, dos soluciones</title>
+  <meta name="description" content="TP3 de Front End 2026 del IFTS 29, Comisión B, Grupo 5. Dos soluciones para ClickJr: plazos de vacantes sin respuesta y postulaciones duplicadas.">
+  <meta name="author" content="Álvaro Gabriel Mamani, Rubén Darío Basconcelo, Juan Sebastián Páez Horvath, Sergio David Pasini Cabello">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="inicio">
+    <div class="wrap">
+      <p class="eyebrow">IFTS 29 · Front End 2026 · TP3</p>
+      <h1>Dos sentencias, dos soluciones</h1>
+      <ul class="badges" aria-label="Datos institucionales">
+        <li>IFTS 29</li>
+        <li>Front End 2026</li>
+        <li>Comisión B</li>
+        <li>Grupo 5</li>
+      </ul>
+      <p class="block-banner">Bloque S01-C: Vacantes y duplicados</p>
+
+      <nav class="site-nav" aria-label="Secciones del trabajo">
+        <a href="#solucion-1">Solución 1 · R5</a>
+        <a href="#solucion-2">Solución 2 · R6</a>
+        <a href="#comprobacion">Comprobación</a>
+        <a href="#creditos">Créditos</a>
+      </nav>
+
+      <section class="team" aria-labelledby="titulo-equipo">
+        <h2 id="titulo-equipo">Comisión B — Grupo 5</h2>
+        <ul class="team-list">
+          <li>Álvaro Gabriel Mamani</li>
+          <li>Rubén Darío Basconcelo</li>
+          <li>Juan Sebastián Páez Horvath</li>
+          <li>Sergio David Pasini Cabello</li>
+        </ul>
+      </section>
+
+      <article class="startup-card">
+        <img src="assets/logo.png" alt="Logo de ClickJr" width="640" height="640">
+        <div class="startup-copy">
+          <h2>ClickJr</h2>
+          <p class="startup-lead">Portal de empleo junior que ayuda a encontrar vacantes y seguir postulaciones.</p>
+          <dl class="startup-facts">
+            <div>
+              <dt>Rubro</dt>
+              <dd>Empleo y desarrollo profesional</dd>
+            </div>
+            <div>
+              <dt>Origen</dt>
+              <dd>Proyecto de estudiantes del <a href="https://ifts16.com/">IFTS 16</a>.</dd>
+            </div>
+            <div>
+              <dt>Bloque</dt>
+              <dd>Bloque S01-C: Vacantes y duplicados</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="wrap">
+      <section class="solution" id="solucion-1" aria-labelledby="titulo-r5">
+        <p class="section-kicker">Frase 1 · Regla R5 · Bloque S01-C</p>
+        <h2 id="titulo-r5">Solución 1. Plazos de respuesta</h2>
+        <blockquote>
+          <p>Si vence el plazo de respuesta configurado para una vacante que sigue sin respuesta, el sistema la marca para revisión e informa la demora a sus postulantes, sin anunciar un resultado inexistente.</p>
+        </blockquote>
+
+        <h3>Agente Guardián de Plazos y Notificación Transparente</h3>
+        <p class="benefit">Garantiza certidumbre a los postulantes junior informando demoras reales sin emitir resultados falsos, a la vez que alerta al equipo de reclutamiento para destrabar vacantes estancadas.</p>
+
+        <figure class="flow-figure" id="figura-r5">
+          <figcaption id="caption-r5">Flujo del agente guardián de plazos</figcaption>
+          <ul class="flow-legend">
+            <li><span class="swatch swatch-step" aria-hidden="true"></span> Acción</li>
+            <li><span class="swatch swatch-decision" aria-hidden="true"></span> Decisión</li>
+            <li><span class="swatch swatch-yes" aria-hidden="true"></span> Rama sí</li>
+            <li><span class="swatch swatch-no" aria-hidden="true"></span> Rama no</li>
+            <li><span class="swatch swatch-alert" aria-hidden="true"></span> Excepción</li>
+          </ul>
+
+          <div class="flowchart" id="flujo-r5" data-flow="r5" aria-labelledby="caption-r5">
+            <div class="step" data-scenario="r5-yes r5-no r5-exception">
+              <p class="node-kicker">Inicio</p>
+              <p class="node-text">Disparo del control de plazos de la vacante.</p>
+            </div>
+            <div class="arrow" data-scenario="r5-yes r5-no r5-exception" aria-hidden="true"></div>
+            <div class="step" data-scenario="r5-yes r5-no r5-exception">
+              <p class="node-kicker">Consulta</p>
+              <p class="node-text">Consulta Cron Vacantes</p>
+            </div>
+            <div class="arrow" data-scenario="r5-yes r5-no r5-exception" aria-hidden="true"></div>
+            <div class="decision" data-scenario="r5-yes r5-no r5-exception">
+              <p class="node-kicker">Decisión</p>
+              <p class="node-text">¿Plazo vencido Y sin respuesta?</p>
+            </div>
+
+            <div class="branch-fork">
+              <div class="branch branch-yes">
+                <p class="branch-label" data-scenario="r5-yes r5-exception">Sí</p>
+                <div class="arrow" data-scenario="r5-yes r5-exception" aria-hidden="true"></div>
+                <div class="step" data-scenario="r5-yes r5-exception">
+                  <p class="node-kicker">Acción</p>
+                  <p class="node-text">Marcar vacante «En Revisión» y enviar notificación de demora.</p>
+                </div>
+                <div class="split">
+                  <div class="split-col">
+                    <div class="arrow" data-scenario="r5-yes" aria-hidden="true"></div>
+                    <div class="step step-end" data-scenario="r5-yes">
+                      <p class="node-kicker">Fin</p>
+                      <p class="node-text">Cierra el aviso de demora sin anunciar un resultado inexistente.</p>
+                    </div>
+                  </div>
+                  <div class="split-col split-exception">
+                    <div class="arrow" data-scenario="r5-exception" aria-hidden="true"></div>
+                    <div class="decision decision-exception" data-scenario="r5-exception">
+                      <p class="node-kicker">Excepción</p>
+                      <p class="node-text">Si persiste más de 48 h sin acción.</p>
+                    </div>
+                    <div class="arrow" data-scenario="r5-exception" aria-hidden="true"></div>
+                    <div class="step step-alert" data-scenario="r5-exception">
+                      <p class="node-kicker">Alerta</p>
+                      <p class="node-text">Alerta de intervención humana a RRHH.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch branch-no">
+                <p class="branch-label" data-scenario="r5-no">No</p>
+                <div class="arrow" data-scenario="r5-no" aria-hidden="true"></div>
+                <div class="step" data-scenario="r5-no">
+                  <p class="node-kicker">Acción</p>
+                  <p class="node-text">Mantener seguimiento habitual.</p>
+                </div>
+                <div class="arrow" data-scenario="r5-no" aria-hidden="true"></div>
+                <div class="step step-end" data-scenario="r5-no">
+                  <p class="node-kicker">Fin</p>
+                  <p class="node-text">La vacante sigue su curso dentro del plazo configurado.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
+
+        <div class="accordion">
+          <p class="keyboard-hint" id="hint-r5">Teclado: con el foco en un título, las flechas arriba y abajo pasan al desplegable anterior o siguiente.</p>
+          <details>
+            <summary>Datos de entrada</summary>
+            <div class="details-body">
+              <ul>
+                <li>ID de la vacante.</li>
+                <li>Fecha límite de respuesta configurada para esa vacante.</li>
+                <li>Estado de feedback: la vacante sigue sin respuesta.</li>
+                <li>Postulantes asociados, destinatarios del aviso de demora.</li>
+                <li>Marca de tiempo de la última acción humana, usada solo en la excepción de 48 h.</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Condición lógica</summary>
+            <div class="details-body">
+              <p>Si la fecha actual supera el plazo configurado y el estado de feedback sigue siendo «sin respuesta», la condición es verdadera.</p>
+              <p>Si el plazo no venció, o si ya existe una respuesta real, la condición es falsa y no se emite ningún aviso de demora.</p>
+              <p>La excepción se evalúa después, sobre una vacante ya marcada: si pasan más de 48 h sin acción del equipo, se escala a RRHH.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Acciones del agente</summary>
+            <div class="details-body">
+              <ul>
+                <li>Marcar la vacante con el estado interno «En Revisión».</li>
+                <li>Informar a cada postulante que la respuesta se demora.</li>
+                <li>No publicar un resultado de selección que nadie haya decidido: ni aprobado, ni rechazado, ni contratado.</li>
+                <li>Si la revisión queda quieta más de 48 h, enviar una alerta de intervención humana a RRHH.</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Resultados esperados</summary>
+            <div class="details-body">
+              <ul>
+                <li>El postulante junior recibe una demora real y deja de esperar en silencio.</li>
+                <li>Reclutamiento ve la vacante en la cola de revisión.</li>
+                <li>El historial no gana un estado de cierre inventado.</li>
+                <li>RRHH solo entra cuando la revisión ya marcada sigue sin movimiento pasadas 48 h.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="solution" id="solucion-2" aria-labelledby="titulo-r6">
+        <p class="section-kicker">Frase 2 · Regla R6 · Bloque S01-C</p>
+        <h2 id="titulo-r6">Solución 2. Postulaciones duplicadas</h2>
+        <blockquote>
+          <p>Si ya existe una postulación del mismo usuario a la misma vacante, el sistema muestra su estado e impide enviar otra.</p>
+        </blockquote>
+
+        <h3>Agente Validador de Duplicados y Estado en Vivo</h3>
+        <p class="benefit">Evita la polución de bases de datos impidiendo postulaciones redundantes y proporciona visibilidad inmediata al candidato junior sobre el avance exacto de su proceso previo.</p>
+
+        <figure class="flow-figure" id="figura-r6">
+          <figcaption id="caption-r6">Flujo del agente validador de duplicados</figcaption>
+          <ul class="flow-legend">
+            <li><span class="swatch swatch-step" aria-hidden="true"></span> Acción</li>
+            <li><span class="swatch swatch-decision" aria-hidden="true"></span> Decisión</li>
+            <li><span class="swatch swatch-yes" aria-hidden="true"></span> Rama sí</li>
+            <li><span class="swatch swatch-no" aria-hidden="true"></span> Rama no</li>
+          </ul>
+
+          <div class="flowchart" id="flujo-r6" data-flow="r6" aria-labelledby="caption-r6">
+            <div class="step" data-scenario="r6-yes r6-no">
+              <p class="node-kicker">Inicio</p>
+              <p class="node-text">El candidato llega a una vacante de ClickJr.</p>
+            </div>
+            <div class="arrow" data-scenario="r6-yes r6-no" aria-hidden="true"></div>
+            <div class="step" data-scenario="r6-yes r6-no">
+              <p class="node-kicker">Intento</p>
+              <p class="node-text">Intento de postulación</p>
+            </div>
+            <div class="arrow" data-scenario="r6-yes r6-no" aria-hidden="true"></div>
+            <div class="step" data-scenario="r6-yes r6-no">
+              <p class="node-kicker">Consulta</p>
+              <p class="node-text">Consulta DB postulaciones</p>
+            </div>
+            <div class="arrow" data-scenario="r6-yes r6-no" aria-hidden="true"></div>
+            <div class="decision" data-scenario="r6-yes r6-no">
+              <p class="node-kicker">Decisión</p>
+              <p class="node-text">¿Existe registro <code>user_id</code> + <code>job_id</code>?</p>
+            </div>
+
+            <div class="branch-fork">
+              <div class="branch branch-yes">
+                <p class="branch-label" data-scenario="r6-yes">Sí</p>
+                <div class="arrow" data-scenario="r6-yes" aria-hidden="true"></div>
+                <div class="step" data-scenario="r6-yes">
+                  <p class="node-kicker">Acción</p>
+                  <p class="node-text">Bloquear botón de envío y renderizar tarjeta con el estado actual.</p>
+                </div>
+                <div class="arrow" data-scenario="r6-yes" aria-hidden="true"></div>
+                <div class="step step-end" data-scenario="r6-yes">
+                  <p class="node-kicker">Fin</p>
+                  <p class="node-text">No se crea otra postulación. El candidato ve el proceso que ya tiene.</p>
+                </div>
+              </div>
+
+              <div class="branch branch-no">
+                <p class="branch-label" data-scenario="r6-no">No</p>
+                <div class="arrow" data-scenario="r6-no" aria-hidden="true"></div>
+                <div class="step" data-scenario="r6-no">
+                  <p class="node-kicker">Acción</p>
+                  <p class="node-text">Habilitar formulario de envío normal.</p>
+                </div>
+                <div class="arrow" data-scenario="r6-no" aria-hidden="true"></div>
+                <div class="step step-end" data-scenario="r6-no">
+                  <p class="node-kicker">Fin</p>
+                  <p class="node-text">Se registra una única postulación de ese usuario a esa vacante.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
+
+        <div class="accordion">
+          <p class="keyboard-hint" id="hint-r6">Teclado: con el foco en un título, las flechas arriba y abajo pasan al desplegable anterior o siguiente.</p>
+          <details>
+            <summary>Entradas</summary>
+            <div class="details-body">
+              <ul>
+                <li><code>user_id</code> de la persona que intenta postularse.</li>
+                <li><code>job_id</code> de la vacante abierta en ClickJr.</li>
+                <li>El intento de envío todavía no confirmado.</li>
+                <li>La tabla de postulaciones ya persistidas.</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Validación</summary>
+            <div class="details-body">
+              <p>El agente busca un registro cuya clave sea la pareja <code>user_id</code> + <code>job_id</code>. No alcanza con repetir usuario ni con repetir vacante por separado.</p>
+              <p>Si esa pareja existe, la validación falla a propósito: se bloquea el botón de envío y se muestra el estado vivo de la postulación anterior.</p>
+              <p>Si esa pareja no existe, la validación deja pasar el formulario de envío normal.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Alternativas</summary>
+            <div class="details-body">
+              <ul>
+                <li>Ya postulado a esa vacante: no hay segundo insert. La interfaz muestra el estado actual, por ejemplo «En revisión», «Entrevista» u «Oferta».</li>
+                <li>Primera vez en esa vacante: el formulario queda habilitado y se guarda una sola postulación.</li>
+                <li>Mismo usuario en otra vacante: no dispara el bloqueo, porque <code>job_id</code> es distinto.</li>
+                <li>Otra persona en la misma vacante: tampoco dispara el bloqueo, porque <code>user_id</code> es distinto.</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Resultado</summary>
+            <div class="details-body">
+              <p>La base conserva como máximo una postulación por usuario y vacante. Quien ya se postuló ve en el acto en qué punto está su proceso, en lugar de generar un duplicado que después habría que reconciliar a mano.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="simulator" id="comprobacion" aria-labelledby="titulo-comprobacion">
+        <h2 id="titulo-comprobacion">Comprobación técnica</h2>
+        <p>Elegí un escenario para resaltar el camino de la sentencia en el diagrama. El texto de abajo describe el resultado, así el recorrido no depende solo del color.</p>
+        <div class="simulator-controls">
+          <label for="escenario">Escenario</label>
+          <select id="escenario" name="escenario">
+            <option value="">Flujo completo, sin resaltar</option>
+            <optgroup label="Frase 1 · R5">
+              <option value="r5-yes">Vacante vencida sin respuesta</option>
+              <option value="r5-no">Vacante dentro de plazo</option>
+              <option value="r5-exception">Vacante vencida sin acción por más de 48 h</option>
+            </optgroup>
+            <optgroup label="Frase 2 · R6">
+              <option value="r6-yes">Usuario ya postulado</option>
+              <option value="r6-no">Primera postulación a la vacante</option>
+            </optgroup>
+          </select>
+          <button type="button" id="limpiar-escenario" disabled>Quitar resaltado</button>
+        </div>
+        <p id="resultado-escenario" role="status">Ningún escenario seleccionado. Los dos diagramas muestran el flujo completo.</p>
+        <p class="simulator-note">Sin JavaScript se pueden leer las sentencias, los diagramas y los desplegables. El resaltado del camino es una mejora progresiva.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="creditos">
+    <div class="wrap">
+      <h2>Créditos</h2>
+      <p>IFTS 29 · Front End 2026 · Comisión B · Grupo 5. Trabajo práctico 3, bloque S01-C, sobre la startup ClickJr.</p>
+      <ul class="credit-list">
+        <li>Álvaro Gabriel Mamani</li>
+        <li>Rubén Darío Basconcelo</li>
+        <li>Juan Sebastián Páez Horvath</li>
+        <li>Sergio David Pasini Cabello</li>
+      </ul>
+      <nav class="footer-nav" aria-label="Enlaces del entregable">
+        <a id="link-repo" href="https://github.com/COMPLETAR-USUARIO/tp3-frontend-g5cb">Repositorio de GitHub (completar URL)</a>
+        <a id="link-prod" href="https://completar-despliegue.example.com">Despliegue en producción (completar URL)</a>
+        <a href="#comprobacion">Comprobación técnica</a>
+        <a href="https://validator.w3.org/nu/">Validador de HTML del W3C</a>
+        <a href="https://ifts29.edu.ar/">IFTS 29</a>
+        <a href="https://ifts16.com/">IFTS 16</a>
+      </nav>
+      <p class="footer-note">ClickJr es un portal de empleo junior originado como proyecto de estudiantes del IFTS 16. Este trabajo se cursa en el IFTS 29.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
