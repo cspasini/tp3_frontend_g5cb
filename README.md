@@ -55,6 +55,7 @@
 - **Modelo:** Grok 4.7 High Fast (declarado según el selector de la plataforma)
 - **Metodología 100% Agéntica:** El equipo no editó código manualmente. Todo el código HTML, CSS, JS y la documentación fue generado, estructurado e iterado mediante instrucciones al agente.
 - **Evidencia de Iteración:**
-  - *Instrucción Inicial:* Se solicitó la estructura semántica base, diagramas de flujo con divs/CSS y componentes accesibles para ambas sentencias.
-  - *Problema Detectado:* Se requería asegurar que los diagramas fueran legibles en desktop sin librerías externas pesadas y con manejo claro de excepciones.
-  - *Refinamiento:* Se instruyó al modelo para consolidar los estilos en variables CSS nativas, ordenar las flechas con pseudo-elementos limpios y dejar los desplegables funcionales por teclado.
+  - *Iteración 1 (Lógica y estructura base):* Generación semántica inicial de la landing, integración de reglas R5 y R6, diagramas de flujo con CSS puro y componentes accesibles `<details>`.
+  - *Iteración 2 (Navegación e identidad):* Incorporación de faldón/navbar superior fijo con efecto translúcido (`backdrop-filter: blur`), badges contextuales de ClickJr / IFTS 16 y tarjetas de integrantes con efectos hover.
+  - *Iteración 3 (Simulador interactivo y enlaces):* Rediseño de la consola de simulación técnica con estética tipo terminal monospace (`#0f172a` / `#38bdf8`) y reemplazo definitivo de placeholders por las URLs activas de producción, repositorio y validadores.
+  - *Iteración 4 (Optimización visual y jerarquía):* Compactación del layout del footer reduciendo altura vertical, ajuste de tipografía moderna y balance de pesos visuales para lectura en desktop.
