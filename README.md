@@ -58,4 +58,7 @@
   - *Iteración 1 (Lógica y estructura base):* Generación semántica inicial de la landing, integración de reglas R5 y R6, diagramas de flujo con CSS puro y componentes accesibles `<details>`.
   - *Iteración 2 (Navegación e identidad):* Incorporación de faldón/navbar superior fijo con efecto translúcido (`backdrop-filter: blur`), badges contextuales de ClickJr / IFTS 16 y tarjetas de integrantes con efectos hover.
   - *Iteración 3 (Simulador interactivo y enlaces):* Rediseño de la consola de simulación técnica con estética tipo terminal monospace (`#0f172a` / `#38bdf8`) y reemplazo definitivo de placeholders por las URLs activas de producción, repositorio y validadores.
-  - *Iteración 4 (Optimización visual y jerarquía):* Compactación del layout del footer reduciendo altura vertical, ajuste de tipografía moderna y balance de pesos visuales para lectura en desktop.
+  - **Iteración 4 (Refactorización del Footer y enlaces definitivos):**
+    - *Problema detectado:* El footer se renderizaba de forma lineal y desestructurada, con enlaces de ejemplo ("completar URL") y sin jerarquía visual.
+    - *Instrucción de mejora:* Se solicitó una reestructuración en grid de 3 columnas (Institución, Integrantes, Enlaces útiles), centrado a un ancho máximo de 1100px, reducción de escala tipográfica y vinculación definitiva a los repositorios, deploy y validadores.
+    - *Resultado:* Pie de página compacto, accesible, balanceado con el layout de la landing y sin enlaces rotos.
